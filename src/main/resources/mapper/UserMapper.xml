@@ -3,77 +3,104 @@
 <mapper namespace="com.example.h_item.mapper.UserMapper">
 
     <insert id="insert"
-            parameterType="com.example.h_item.po.UserPO"
+            parameterType="com.example.h_item.model.po.UserPO"
             keyProperty="id" useGeneratedKeys="true">
-        insert into `user`(`username`, `password`,`sex`, `birthday`, `img`,
-                                        ,`academy_id`,`educational`, `major`, `phone`,`remark`)
-        values (#{username}, #{password},#{sex}, #{birthday}, #{img}, #{academyId},
-                #{educational}, #{major},#{phone},#{remark})
+        insert into `user`(`username`, `password`, `sex`, `birthday`, `img`,
+                           `academy_id`, `educational`, `major`, `phone`, `remark`)
+        values (#{username}, #{password}, #{sex}, #{birthday}, #{img}, #{academyId},
+                #{educational}, #{major}, #{phone}, #{remark})
     </insert>
 
     <select id="queryById"
-            resultType="com.example.h_item.po.UserPO">
-        select `id`,`username`, `password`,`sex`, `birthday`, `img`,
-        ,`academy_id`,`educational`, `major`, `phone`,`remark`
+            resultType="com.example.h_item.model.po.UserPO">
+        select `id`,
+               `username`,
+               `password`,
+               `sex`,
+               `birthday`,
+               `img`,
+               `academy_id`,
+               `educational`,
+               `major`,
+               `phone`,
+               `remark`
         from `user`
         where `id` = #{id}
     </select>
 
-<!--    <update id="updateById"-->
-<!--            parameterType="com.example.h_item.po.UserPO">-->
-<!--        update `user`-->
-<!--        <set>-->
-<!--            <if test="status != null">-->
-<!--                `status` = #{status},-->
-<!--            </if>-->
-<!--            <if test="successCnt != null">-->
-<!--                `success_cnt` = #{successCnt},-->
-<!--            </if>-->
-<!--            <if test="failFileUrl != null">-->
-<!--                `fail_file_url` = #{failFileUrl},-->
-<!--            </if>-->
-<!--            <if test="remark != null">-->
-<!--                `remark` = #{remark},-->
-<!--            </if>-->
-<!--            <if test="extraJson != null">-->
-<!--                `extra_json` = #{extraJson},-->
-<!--            </if>-->
-<!--        </set>-->
-<!--        where `id` = #{id}-->
-<!--    </update>-->
+    <select id="queryByUsername"
+            resultType="com.example.h_item.model.po.UserPO">
+        select `id`,
+               `username`,
+               `password`,
+               `sex`,
+               `birthday`,
+               `img`,
+               `academy_id`,
+               `educational`,
+               `major`,
+               `phone`,
+               `remark`
+        from `user`
+        where `username` = #{username}
+    </select>
 
-<!--    <select id="queryByCondition"-->
-<!--            parameterType="com.guming.wisdom.shop.asset.api.model.request.common.CommonImportRecordReq"-->
-<!--            resultType="com.example.h_item.po.UserPO">-->
-<!--        select `id`,-->
-<!--        `status`,-->
-<!--        `task_type`,-->
-<!--        `total_cnt`,-->
-<!--        `success_cnt`,-->
-<!--        `fail_file_url`,-->
-<!--        `create_user_name`,-->
-<!--        `create_user_id`,-->
-<!--        `remark`,-->
-<!--        `extra_json`,-->
-<!--        `create_time`-->
-<!--        from `user`-->
-<!--        <where>-->
-<!--            <if test="taskType != null">-->
-<!--                and task_type = #{taskType}-->
-<!--            </if>-->
-<!--        </where>-->
-<!--        order by `id` DESC limit #{offset}, #{limit}-->
-<!--    </select>-->
 
-<!--    <select id="count"-->
-<!--            parameterType="com.guming.wisdom.shop.asset.api.model.request.common.CommonImportRecordReq"-->
-<!--            resultType="int">-->
-<!--        select count(*)-->
-<!--        from `user`-->
-<!--        <where>-->
-<!--            <if test="taskType != null">-->
-<!--                and task_type = #{taskType}-->
-<!--            </if>-->
-<!--        </where>-->
-<!--    </select>-->
+    <!--    <update id="updateById"-->
+    <!--            parameterType="com.example.h_item.po.UserPO">-->
+    <!--        update `user`-->
+    <!--        <set>-->
+    <!--            <if test="status != null">-->
+    <!--                `status` = #{status},-->
+    <!--            </if>-->
+    <!--            <if test="successCnt != null">-->
+    <!--                `success_cnt` = #{successCnt},-->
+    <!--            </if>-->
+    <!--            <if test="failFileUrl != null">-->
+    <!--                `fail_file_url` = #{failFileUrl},-->
+    <!--            </if>-->
+    <!--            <if test="remark != null">-->
+    <!--                `remark` = #{remark},-->
+    <!--            </if>-->
+    <!--            <if test="extraJson != null">-->
+    <!--                `extra_json` = #{extraJson},-->
+    <!--            </if>-->
+    <!--        </set>-->
+    <!--        where `id` = #{id}-->
+    <!--    </update>-->
+
+    <!--    <select id="queryByCondition"-->
+    <!--            parameterType="com.guming.wisdom.shop.asset.api.model.request.common.CommonImportRecordReq"-->
+    <!--            resultType="com.example.h_item.po.UserPO">-->
+    <!--        select `id`,-->
+    <!--        `status`,-->
+    <!--        `task_type`,-->
+    <!--        `total_cnt`,-->
+    <!--        `success_cnt`,-->
+    <!--        `fail_file_url`,-->
+    <!--        `create_user_name`,-->
+    <!--        `create_user_id`,-->
+    <!--        `remark`,-->
+    <!--        `extra_json`,-->
+    <!--        `create_time`-->
+    <!--        from `user`-->
+    <!--        <where>-->
+    <!--            <if test="taskType != null">-->
+    <!--                and task_type = #{taskType}-->
+    <!--            </if>-->
+    <!--        </where>-->
+    <!--        order by `id` DESC limit #{offset}, #{limit}-->
+    <!--    </select>-->
+
+    <!--    <select id="count"-->
+    <!--            parameterType="com.guming.wisdom.shop.asset.api.model.request.common.CommonImportRecordReq"-->
+    <!--            resultType="int">-->
+    <!--        select count(*)-->
+    <!--        from `user`-->
+    <!--        <where>-->
+    <!--            <if test="taskType != null">-->
+    <!--                and task_type = #{taskType}-->
+    <!--            </if>-->
+    <!--        </where>-->
+    <!--    </select>-->
 </mapper>

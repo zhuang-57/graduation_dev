@@ -2,7 +2,7 @@ package com.example.h_item.service;
 
 
 import com.example.h_item.mapper.UserMapper;
-import com.example.h_item.po.UserPO;
+import com.example.h_item.model.po.UserPO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,5 +19,9 @@ public class UserService {
 
     public UserPO queryById(Long id) {
         return userMapper.queryById(id);
+    }
+
+    public UserPO queryByUsername(String username) {
+        return userMapper.queryByUsername(username);
     }
 }

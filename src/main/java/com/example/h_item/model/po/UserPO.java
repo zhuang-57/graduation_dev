@@ -1,4 +1,4 @@
-package com.example.h_item.po;
+package com.example.h_item.model.po;
 
 import lombok.Data;
 
