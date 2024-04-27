@@ -1,11 +1,14 @@
 package com.example.h_item.service;
 
 
+import com.example.h_item.common.Pager;
 import com.example.h_item.mapper.UserMapper;
 import com.example.h_item.model.po.UserPO;
+import com.example.h_item.model.req.UserReq;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -23,5 +26,14 @@ public class UserService {
 
     public UserPO queryByUsername(String username) {
         return userMapper.queryByUsername(username);
+    }
+
+    public Pager<UserPO> query(UserReq req) {
+        List<UserPO> userPOList = userMapper.query(req);
+        return new Pager<>(new Pager.PageData(req.getPage(), userMapper.count(req)), userPOList);
+    }
+
+    public void updateById(UserPO userPO) {
+        userMapper.update(userPO);
     }
 }

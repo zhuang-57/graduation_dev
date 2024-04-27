@@ -2,26 +2,30 @@ package com.example.h_item.model.po;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author BEJSON
- * @description 学院表
+ * @description 角色表
  * @date 2024-04-27
  */
 @Data
-public class AcademyPO {
+public class RolePO {
 
     /**
      * id
      */
-    private Integer id;
+    private Long id;
 
     /**
-     * 学院名称
+     * 角色名称
      */
-    private String acadName;
+    private String rolesName;
+
+    /**
+     * 角色描述
+     */
+    private String remark;
 
     /**
      * 创建时间
@@ -32,5 +36,4 @@ public class AcademyPO {
      * 更新时间
      */
     private Date updateTime;
-
 }

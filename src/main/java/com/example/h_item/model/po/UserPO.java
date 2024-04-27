@@ -22,6 +22,11 @@ public class UserPO {
     private String password;
 
     /**
+     * 角色id
+     */
+    private Long roleId;
+
+    /**
      * sex
      */
     private String sex;
@@ -60,5 +65,15 @@ public class UserPO {
      * 个人简介
      */
     private String remark;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
 }

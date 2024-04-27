@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.h_item.mapper.FundMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.h_item.model.po.FundPO" >
+        <result column="id" property="id" />
+        <result column="pro_id" property="proId" />
+        <result column="pro_name" property="proName" />
+        <result column="user_id" property="userId" />
+        <result column="fund" property="fund" />
+        <result column="account" property="account" />
+        <result column="remark" property="remark" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        pro_id,
+        pro_name,
+        user_id,
+        fund,
+        account,
+        remark,
+        status,
+        create_time,
+        update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="com.example.h_item.model.po.FundPO">
+        INSERT INTO fund
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != proId ">
+                pro_id,
+            </if>
+            <if test="null != proName and '' != proName">
+                pro_name,
+            </if>
+            <if test="null != fund ">
+                fund,
+            </if>
+            <if test="null != userId ">
+                user_id,
+            </if>
+            <if test="null != account and '' != account">
+                account,
+            </if>
+            <if test="null != remark and '' != remark">
+                remark,
+            </if>
+            <if test="null != status and '' != status">
+                status,
+            </if>
+            <if test="null != createTime ">
+                create_time,
+            </if>
+            <if test="null != updateTime ">
+                update_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != proId ">
+                #{proId},
+            </if>
+            <if test="null != proName and '' != proName">
+                #{proName},
+            </if>
+            <if test="null != fund ">
+                #{fund},
+            </if>
+            <if test="null != userId ">
+                #{userId},
+            </if>
+            <if test="null != account and '' != account">
+                #{account},
+            </if>
+            <if test="null != remark and '' != remark">
+                #{remark},
+            </if>
+            <if test="null != status and '' != status">
+                #{status},
+            </if>
+            <if test="null != createTime ">
+                #{createTime},
+            </if>
+            <if test="null != updateTime ">
+                #{updateTime}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM fund
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.example.h_item.model.po.FundPO">
+        UPDATE fund
+        <set>
+            <if test="null != proId ">pro_id = #{proId},</if>
+            <if test="null != proName and '' != proName">pro_name = #{proName},</if>
+            <if test="null != fund ">fund = #{fund},</if>
+            <if test="null != account and '' != account">account = #{account},</if>
+            <if test="null != remark and '' != remark">remark = #{remark},</if>
+            <if test="null != status and '' != status">status = #{status},</if>
+            <if test="null != createTime ">create_time = #{createTime},</if>
+            <if test="null != updateTime ">update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="queryById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM fund
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM fund
+        <where>
+            <if test="proId != null">
+                `pro_id` = #{proId}
+            </if>
+            <if test="proName != null">
+                `pro_name` like concat('%',#{proName},'%')
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId}
+            </if>
+            <if test="status != null">
+                `status` = #{status}
+            </if>
+        </where>
+
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        <where>
+            <if test="proId != null">
+                `pro_id` = #{proId}
+            </if>
+            <if test="proName != null">
+                `pro_name` like concat('%',#{proName},'%')
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId}
+            </if>
+            <if test="status != null">
+                `status` = #{status}
+            </if>
+        </where>
+
+        FROM fund
+    </select>
+
+</mapper>

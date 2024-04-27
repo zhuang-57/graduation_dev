@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.h_item.mapper.ProjectMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.h_item.model.po.ProjectPO" >
+        <result column="id" property="id" />
+        <result column="pro_name" property="proName" />
+        <result column="user_id" property="userId" />
+        <result column="username" property="username" />
+        <result column="status" property="status" />
+        <result column="level" property="level" />
+        <result column="academy_id" property="academyId" />
+        <result column="type" property="type" />
+        <result column="teacher_name" property="teacherName" />
+        <result column="teacher_phone" property="teacherPhone" />
+        <result column="member" property="member" />
+        <result column="link" property="link" />
+        <result column="remark" property="remark" />
+        <result column="startime" property="startime" />
+        <result column="endtime" property="endtime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        pro_name,
+        user_id,
+        username,
+        status,
+        level,
+        academy_id,
+        type,
+        teacher_name,
+        teacher_phone,
+        member,
+        link,
+        remark,
+        startime,
+        endtime,
+        create_time,
+        update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="com.example.h_item.model.po.ProjectPO">
+        INSERT INTO project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != proName and '' != proName">
+                pro_name,
+            </if>
+            <if test="null != userId ">
+                user_id,
+            </if>
+            <if test="null != username and '' != username">
+                username,
+            </if>
+            <if test="null != status and '' != status">
+                status,
+            </if>
+            <if test="null != level and '' != level">
+                level,
+            </if>
+            <if test="null != academyId ">
+                academy_id,
+            </if>
+            <if test="null != type and '' != type">
+                type,
+            </if>
+            <if test="null != teacherName and '' != teacherName">
+                teacher_name,
+            </if>
+            <if test="null != teacherPhone and '' != teacherPhone">
+                teacher_phone,
+            </if>
+            <if test="null != member and '' != member">
+                member,
+            </if>
+            <if test="null != link and '' != link">
+                link,
+            </if>
+            <if test="null != remark and '' != remark">
+                remark,
+            </if>
+            <if test="null != startime ">
+                startime,
+            </if>
+            <if test="null != endtime ">
+                endtime,
+            </if>
+            <if test="null != createTime ">
+                create_time,
+            </if>
+            <if test="null != updateTime ">
+                update_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != proName and '' != proName">
+                #{proName},
+            </if>
+            <if test="null != userId ">
+                #{userId},
+            </if>
+            <if test="null != username and '' != username">
+                #{username},
+            </if>
+            <if test="null != status and '' != status">
+                #{status},
+            </if>
+            <if test="null != level and '' != level">
+                #{level},
+            </if>
+            <if test="null != academyId ">
+                #{academyId},
+            </if>
+            <if test="null != type and '' != type">
+                #{type},
+            </if>
+            <if test="null != teacherName and '' != teacherName">
+                #{teacherName},
+            </if>
+            <if test="null != teacherPhone and '' != teacherPhone">
+                #{teacherPhone},
+            </if>
+            <if test="null != member and '' != member">
+                #{member},
+            </if>
+            <if test="null != link and '' != link">
+                #{link},
+            </if>
+            <if test="null != remark and '' != remark">
+                #{remark},
+            </if>
+            <if test="null != startime ">
+                #{startime},
+            </if>
+            <if test="null != endtime ">
+                #{endtime},
+            </if>
+            <if test="null != createTime ">
+                #{createTime},
+            </if>
+            <if test="null != updateTime ">
+                #{updateTime}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM project
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.example.h_item.model.po.ProjectPO">
+        UPDATE project
+        <set>
+            <if test="null != proName and '' != proName">pro_name = #{proName},</if>
+            <if test="null != userId ">user_id = #{userId},</if>
+            <if test="null != username and '' != username">username = #{username},</if>
+            <if test="null != status and '' != status">status = #{status},</if>
+            <if test="null != level and '' != level">level = #{level},</if>
+            <if test="null != academyId ">academy_id = #{academyId},</if>
+            <if test="null != type and '' != type">type = #{type},</if>
+            <if test="null != teacherName and '' != teacherName">teacher_name = #{teacherName},</if>
+            <if test="null != teacherPhone and '' != teacherPhone">teacher_phone = #{teacherPhone},</if>
+            <if test="null != member and '' != member">member = #{member},</if>
+            <if test="null != link and '' != link">link = #{link},</if>
+            <if test="null != remark and '' != remark">remark = #{remark},</if>
+            <if test="null != startime ">startime = #{startime},</if>
+            <if test="null != endtime ">endtime = #{endtime},</if>
+            <if test="null != createTime ">create_time = #{createTime},</if>
+            <if test="null != updateTime ">update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="queryById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM project
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM project
+        <where>
+            <if test="likeProjectName != null and likeProjectName != ''">
+                `pro_name` like concat('%',#{likeProjectName},'%')
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId}
+            </if>
+            <if test="status != null">
+                `status` = #{status}
+            </if>
+        </where>
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        <where>
+            <if test="likeProjectName != null and likeProjectName != ''">
+                `pro_name` like concat('%',#{likeProjectName},'%')
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId}
+            </if>
+            <if test="status != null">
+                `status` = #{status}
+            </if>
+        </where>
+        FROM project
+    </select>
+
+</mapper>

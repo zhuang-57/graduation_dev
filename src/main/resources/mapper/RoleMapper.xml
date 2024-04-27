@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.h_item.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.h_item.model.po.RolePO" >
+                <result column="id" property="id" />
+                <result column="roles_name" property="rolesName" />
+                <result column="remark" property="remark" />
+                <result column="create_time" property="createTime" />
+                <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                roles_name,
+                remark,
+                create_time,
+                update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.example.h_item.model.po.RolePO">
+        INSERT INTO roles
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                        <if test="null != rolesName and '' != rolesName">
+                        roles_name,
+                        </if>
+                        <if test="null != remark and '' != remark">
+                        remark,
+                        </if>
+                        <if test="null != createTime ">
+                        create_time,
+                        </if>
+                        <if test="null != updateTime ">
+                        update_time
+                        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                        <if test="null != rolesName and '' != rolesName">
+                        #{rolesName},
+                        </if>
+                        <if test="null != remark and '' != remark">
+                        #{remark},
+                        </if>
+                        <if test="null != createTime ">
+                        #{createTime},
+                        </if>
+                        <if test="null != updateTime ">
+                        #{updateTime}
+                        </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM roles
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.example.h_item.model.po.RolePO">
+        UPDATE roles
+        <set>
+                    <if test="null != rolesName and '' != rolesName">roles_name = #{rolesName},</if>
+                    <if test="null != remark and '' != remark">remark = #{remark},</if>
+                    <if test="null != createTime ">create_time = #{createTime},</if>
+                    <if test="null != updateTime ">update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="queryById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM roles
+        WHERE id = #{id}
+    </select>
+
+    <select id="queryByName" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM roles
+        WHERE `roles_name` = #{name}
+    </select>
+
+    <select id="pageQuery" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM roles
+        <where>
+            <if test="likeRoleName != null and likeRoleName != ''">
+                `roles_name` like concat('%',#{likeRoleName},'%')
+            </if>
+        </where>
+
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(1)
+        <where>
+            <if test="likeRoleName != null and likeRoleName != ''">
+                `roles_name` like concat('%',#{likeRoleName},'%')
+            </if>
+        </where>
+
+        FROM roles
+    </select>
+
+</mapper>

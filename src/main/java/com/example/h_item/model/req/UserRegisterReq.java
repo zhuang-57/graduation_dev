@@ -1,43 +1,32 @@
-package com.example.h_item.model.dto;
+package com.example.h_item.model.req;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
- * @Date 2024/4/21
+ * @Date 2024/4/27
  * @Created by wangshuai
  */
 @Data
-public class UserInfoDTO {
+public class UserRegisterReq {
 
     /**
-     * id
+     * 用户名
      */
-    private Long id;
-
-    /**
-     * username
-     */
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     /**
-     * password
+     * 密码
      */
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**
-     * 角色id
-     */
-    private Long roleId;
-
-    /**
-     * 角色名称
-     */
-    private String roleName;
-
-    /**
-     * sex
+     * 性别
      */
     private String sex;
 
@@ -49,11 +38,13 @@ public class UserInfoDTO {
     /**
      * img
      */
+    @NotBlank(message = "头像不能为空")
     private String img;
 
     /**
      * 学院id
      */
+    @NotNull(message = "学院不能为空")
     private Long academyId;
 
     /**

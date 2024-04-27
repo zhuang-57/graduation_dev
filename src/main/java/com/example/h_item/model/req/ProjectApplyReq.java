@@ -6,30 +6,11 @@ import java.util.Date;
 
 @Data
 public class ProjectApplyReq {
-//    /**
-//     * id
-//     */
-//    private Long id;
-
-    /**
-     * 项目id
-     */
-    private Long proId;
 
     /**
      * 项目名称
      */
     private String proName;
-
-//    /**
-//     * 用户id
-//     */
-//    private Long userId;
-
-    /**
-     * 用户名
-     */
-    private String username;
 
     /**
      * 等级
