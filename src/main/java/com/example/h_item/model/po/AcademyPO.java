@@ -3,6 +3,8 @@ package com.example.h_item.model.po;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
+
 /**
  * @description 学院表
  * @author BEJSON
@@ -14,7 +16,6 @@ public class AcademyPO {
 
         private static final long serialVersionUID = 1L;
 
-        @TableId(type = IdType.AUTO)
         /**
          * id
          */
@@ -35,5 +36,4 @@ public class AcademyPO {
          */
         private Date updateTime;
 
-        public Academy() {}
 }
