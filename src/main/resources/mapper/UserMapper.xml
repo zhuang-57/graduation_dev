@@ -151,17 +151,17 @@
                 `username` like concat('%',#{likeUsername},'%')
             </if>
         </where>
-        LIMIT #{offset}, #{pageSize}
+        LIMIT #{offset}, #{limit}
     </select>
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(1)
+        FROM user
         <where>
             <if test="likeUsername != null and likeUsername != ''">
                 `username` like concat('%',#{likeUsername},'%')
             </if>
         </where>
-        FROM user
     </select>
 
 </mapper>

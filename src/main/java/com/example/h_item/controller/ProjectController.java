@@ -8,10 +8,7 @@ import com.example.h_item.common.Result;
 import com.example.h_item.common.StatusCodeException;
 import com.example.h_item.enums.ProjectStatusEnum;
 import com.example.h_item.model.po.ProjectPO;
-import com.example.h_item.model.req.IdRequest;
-import com.example.h_item.model.req.ProjectApplyReq;
-import com.example.h_item.model.req.ProjectAuditReq;
-import com.example.h_item.model.req.ProjectReq;
+import com.example.h_item.model.req.*;
 import com.example.h_item.service.ProjectService;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +46,7 @@ public class ProjectController {
     public Result<ProjectPO> queryById(@RequestBody @Valid IdRequest req) {
         return Result.success(projectService.queryById(req.getId()));
     }
+
 
     @PostMapping("/pageQuery")
     public Result<Pager<ProjectPO>> pageQuery(@RequestBody @Valid ProjectReq req) {

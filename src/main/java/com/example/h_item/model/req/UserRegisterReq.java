@@ -38,7 +38,6 @@ public class UserRegisterReq {
     /**
      * img
      */
-    @NotBlank(message = "头像不能为空")
     private String img;
 
     /**

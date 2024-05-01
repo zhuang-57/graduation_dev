@@ -137,11 +137,12 @@
             </if>
         </where>
 
-        LIMIT #{offset}, #{pageSize}
+        LIMIT #{offset}, #{limit}
     </select>
 
     <select id="pageListCount" resultType="java.lang.Integer">
         SELECT count(1)
+        FROM fund
         <where>
             <if test="proId != null">
                 `pro_id` = #{proId}
@@ -156,8 +157,6 @@
                 `status` = #{status}
             </if>
         </where>
-
-        FROM fund
     </select>
 
 </mapper>

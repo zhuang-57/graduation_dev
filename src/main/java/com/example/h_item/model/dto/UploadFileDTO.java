@@ -10,4 +10,5 @@ import lombok.Data;
 public class UploadFileDTO {
     private String oldName;
     private String newName;
+    private String fileUrl;
 }

@@ -45,6 +45,7 @@ public class FileController {
         UploadFileDTO uploadFileDTO = new UploadFileDTO();
         uploadFileDTO.setOldName(file.getOriginalFilename());
         uploadFileDTO.setNewName(newFileName);
+        uploadFileDTO.setFileUrl(path.substring(1) + FILE_PATH + newFileName);
         return Result.success(uploadFileDTO);
     }
 

@@ -7,7 +7,7 @@ public enum ProjectStatusEnum {
 
     REFUSE("驳回"),
 
-    WAIT_MIDDLE_CHECK("待中期检测"),
+    WAIT_MIDDLE_CHECK("待中期检查"),
 
     END("结束"),
 

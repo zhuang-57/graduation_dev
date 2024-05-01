@@ -40,6 +40,7 @@ public class ProjectService {
         projectPO.setUserId(userId);
         projectPO.setUsername(userPO.getUsername());
         projectPO.setAcademyId(userPO.getAcademyId());
+        projectPO.setStatus(ProjectStatusEnum.WAIT_AUDIT.name());
         projectMapper.insert(projectPO);
     }
 
@@ -65,6 +66,7 @@ public class ProjectService {
         projectPO.setStatusName(ProjectStatusEnum.valueOf(projectPO.getStatus()).getDesc());
         return projectPO;
     }
+
 
     /**
      * 查询 分页查询

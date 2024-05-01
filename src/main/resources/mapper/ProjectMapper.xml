@@ -183,6 +183,8 @@
         WHERE id = #{id}
     </select>
 
+
+
     <select id="pageList" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM project
@@ -197,11 +199,11 @@
                 `status` = #{status}
             </if>
         </where>
-        LIMIT #{offset}, #{pageSize}
+        LIMIT #{offset}, #{limit}
     </select>
 
     <select id="pageListCount" resultType="java.lang.Integer">
-        SELECT count(1)
+        SELECT count(1) FROM project
         <where>
             <if test="likeProjectName != null and likeProjectName != ''">
                 `pro_name` like concat('%',#{likeProjectName},'%')
@@ -213,7 +215,6 @@
                 `status` = #{status}
             </if>
         </where>
-        FROM project
     </select>
 
 </mapper>
