@@ -2,6 +2,7 @@ package com.example.h_item.service;
 
 import cn.hutool.core.lang.Assert;
 import com.example.h_item.common.Pager;
+import com.example.h_item.common.StatusCodeException;
 import com.example.h_item.mapper.RoleMapper;
 import com.example.h_item.model.po.RolePO;
 import com.example.h_item.model.req.RoleAddReq;
@@ -39,6 +40,9 @@ public class RoleService {
      * 刪除
      **/
     public boolean delete(Long id) {
+        if (id == 3) {
+            StatusCodeException.throwException("管理员角色不能删除");
+        }
         roleMapper.delete(id);
         return true;
     }

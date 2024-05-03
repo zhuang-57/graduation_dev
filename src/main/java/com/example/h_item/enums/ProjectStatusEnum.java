@@ -9,6 +9,8 @@ public enum ProjectStatusEnum {
 
     WAIT_MIDDLE_CHECK("待中期检查"),
 
+    WAIT_END("待结题"),
+
     END("结束"),
 
     ;

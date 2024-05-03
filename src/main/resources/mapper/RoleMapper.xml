@@ -89,7 +89,7 @@
             </if>
         </where>
 
-        LIMIT #{offset}, #{limit}
+        order by id desc  LIMIT #{offset}, #{limit}
     </select>
 
     <select id="count" resultType="java.lang.Integer">

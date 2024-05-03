@@ -3,6 +3,7 @@ package com.example.h_item.controller;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
+import com.example.h_item.cache.LoginUtil;
 import com.example.h_item.common.Pager;
 import com.example.h_item.common.Result;
 import com.example.h_item.common.StatusCodeException;
@@ -23,9 +24,8 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping("/apply")
-    public Result<Void> apply(@RequestBody ProjectApplyReq req, @RequestHeader("token") String token) {
-        Assert.notBlank(token, "token不能为空");
-        projectService.apply(req, token);
+    public Result<Void> apply(@RequestBody ProjectApplyReq req) {
+        projectService.apply(req);
         return Result.success();
     }
 
@@ -36,9 +36,15 @@ public class ProjectController {
     }
 
     @PostMapping("/update")
-    public Result<Void> update(@RequestBody ProjectPO projectPO) {
-        Assert.notNull(projectPO.getId(), "id不能为空");
-        projectService.update(projectPO);
+    public Result<Void> update(@RequestBody ProjectUpdateReq req) {
+        Assert.notNull(req.getId(), "id不能为空");
+        projectService.update(req);
+        return Result.success();
+    }
+
+    @PostMapping("/uploadAttachment")
+    public Result<Void> uploadAttachment(@RequestBody @Valid UploadAttachmentReq req) {
+        projectService.uploadAttachment(req);
         return Result.success();
     }
 
@@ -47,7 +53,6 @@ public class ProjectController {
         return Result.success(projectService.queryById(req.getId()));
     }
 
-
     @PostMapping("/pageQuery")
     public Result<Pager<ProjectPO>> pageQuery(@RequestBody @Valid ProjectReq req) {
         return Result.success(projectService.pageList(req));
@@ -55,22 +60,7 @@ public class ProjectController {
 
     @PostMapping("/audit")
     public Result<Void> audit(@RequestBody @Valid ProjectAuditReq req) {
-        ProjectPO projectPO = projectService.queryById(req.getId());
-        Assert.notNull(projectPO, "找不到项目信息");
-        if (StrUtil.equalsAny(ProjectStatusEnum.WAIT_AUDIT.name(),
-                ProjectStatusEnum.WAIT_MIDDLE_CHECK.name())) {
-            StatusCodeException.throwException("只有待审核与待中期检测的项目需要审核");
-        }
-        if (!req.getAcceptFlag()) {
-            projectPO.setStatus(ProjectStatusEnum.REFUSE.name());
-        } else {
-            if (projectPO.getStatus().equals(ProjectStatusEnum.WAIT_AUDIT.name())) {
-                projectPO.setStatus(ProjectStatusEnum.WAIT_MIDDLE_CHECK.name());
-            } else if (projectPO.getStatus().equals(ProjectStatusEnum.WAIT_MIDDLE_CHECK.name())) {
-                projectPO.setStatus(ProjectStatusEnum.END.name());
-            }
-        }
-        projectService.update(projectPO);
+        projectService.audit(req);
         return Result.success();
     }
 }

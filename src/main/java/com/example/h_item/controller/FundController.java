@@ -23,9 +23,8 @@ public class FundController {
     private FundService fundService;
 
     @PostMapping("/apply")
-    public Result<Void> apply(@RequestBody FundApplyReq req, @RequestHeader("token") String token) {
-        Assert.notBlank(token, "token不能为空");
-        fundService.apply(req, token);
+    public Result<Void> apply(@RequestBody FundApplyReq req) {
+        fundService.apply(req);
         return Result.success();
     }
 

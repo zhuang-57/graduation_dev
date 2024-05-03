@@ -135,6 +135,12 @@
         WHERE id = #{id}
     </select>
 
+    <select id="delete" resultMap="BaseResultMap">
+        delete
+        FROM user
+        WHERE id = #{id}
+    </select>
+
     <select id="queryByUsername" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM user
@@ -151,7 +157,7 @@
                 `username` like concat('%',#{likeUsername},'%')
             </if>
         </where>
-        LIMIT #{offset}, #{limit}
+        order by id desc  LIMIT #{offset}, #{limit}
     </select>
 
     <select id="count" resultType="java.lang.Integer">

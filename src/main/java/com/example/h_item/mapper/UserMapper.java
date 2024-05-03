@@ -15,6 +15,8 @@ public interface UserMapper {
 
     UserPO queryById(Long id);
 
+    Integer delete(Long id);
+
     UserPO queryByUsername(String username);
 
     List<UserPO> query(UserReq req);

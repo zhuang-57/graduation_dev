@@ -24,6 +24,10 @@ public class UserService {
         return userMapper.queryById(id);
     }
 
+    public void delete(Long id) {
+        userMapper.delete(id);
+    }
+
     public UserPO queryByUsername(String username) {
         return userMapper.queryByUsername(username);
     }

@@ -2,6 +2,7 @@ package com.example.h_item.service;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
+import com.example.h_item.cache.LoginUtil;
 import com.example.h_item.cache.UserLoginCache;
 import com.example.h_item.common.Pager;
 import com.example.h_item.enums.FundStatusEnum;
@@ -13,7 +14,6 @@ import com.example.h_item.model.req.FundApplyReq;
 import com.example.h_item.model.req.FundAuditReq;
 import com.example.h_item.model.req.FundReq;
 import com.example.h_item.model.req.IdRequest;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -41,11 +41,11 @@ public class FundService {
     /**
      * 申请经费
      */
-    public void apply(FundApplyReq req, String token) {
+    public void apply(FundApplyReq req) {
         ProjectPO projectPO = projectService.queryById(req.getProId());
         Assert.notNull(projectPO, "找不到项目信息");
 
-        Long userId = userLoginCache.getUserIdByToken(token);
+        Long userId = userLoginCache.getUserIdByToken(LoginUtil.get());
         UserPO userPO = userService.queryById(userId);
         Assert.notNull(userPO, "找不到用户信息");
 
@@ -64,6 +64,12 @@ public class FundService {
      * 列表查询
      */
     public Pager<FundPO> pageQuery(FundReq req) {
+        Long userId = userLoginCache.getUserIdByToken(LoginUtil.get());
+        UserPO userPO = userService.queryById(userId);
+        Assert.notNull(userPO, "找不到用户信息");
+        if (userPO.getRoleId() != 3) {
+            req.setUserId(userId);
+        }
         List<FundPO> fundPOS = fundMapper.pageList(req);
         return new Pager<>(new Pager.PageData(req.getPage(), fundMapper.pageListCount(req)), fundPOS);
     }
@@ -86,7 +92,7 @@ public class FundService {
         Assert.notNull(fundPO, "找不到对应的经费信息");
         Assert.isTrue(StrUtil.equals(fundPO.getStatus(), FundStatusEnum.WAIT_AUDIT.name()),
                 "待审核的经费申请才能审核");
-        fundPO.setStatus(req.getAcceptFlag() ? FundStatusEnum.ACCEPT.name() : FundStatusEnum.CANCEL.name());
+        fundPO.setStatus(req.getAcceptFlag() ? FundStatusEnum.ACCEPT.name() : FundStatusEnum.REFUSE.name());
         fundMapper.update(fundPO);
     }
 }

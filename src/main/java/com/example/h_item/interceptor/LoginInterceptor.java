@@ -1,6 +1,7 @@
 package com.example.h_item.interceptor;
 
 import cn.hutool.core.util.StrUtil;
+import com.example.h_item.cache.LoginUtil;
 import com.example.h_item.cache.UserLoginCache;
 import com.example.h_item.common.StatusCodeException;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String token = request.getParameter("token");
+        String token = request.getHeader("token");
         if (StrUtil.isBlank(token)) {
             log.info("用户没有权限进行访问：找不到对应token");
             StatusCodeException.throwException("用户未登录");
@@ -41,6 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             StatusCodeException.throwException("用户未登录");
             return false;
         } else {
+            LoginUtil.put(token);
             return true;
         }
     }
@@ -51,6 +53,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 //        System.out.println("执行了TestInterceptor的afterCompletion方法");
+        LoginUtil.remove();
     }
 
 }

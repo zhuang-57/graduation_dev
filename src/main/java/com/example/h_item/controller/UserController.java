@@ -36,25 +36,28 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public Result<Boolean> update(@RequestBody @Valid UserUpdateReq req, @RequestHeader("token") String token) {
-        return Result.success(userBiz.update(req, token));
+    public Result<Boolean> update(@RequestBody @Valid UserUpdateReq req) {
+        return Result.success(userBiz.update(req));
+    }
+
+    @PostMapping("/delete")
+    public Result<Boolean> delete(@RequestBody @Valid IdRequest req) {
+        return Result.success(userBiz.delete(req));
     }
 
     @PostMapping("/updatePassword")
-    public Result<Boolean> updatePassword(@RequestBody @Valid UserUpdatePasswordReq req, @RequestHeader("token") String token) {
-        return Result.success(userBiz.updatePassword(req, token));
+    public Result<Boolean> updatePassword(@RequestBody @Valid UserUpdatePasswordReq req) {
+        return Result.success(userBiz.updatePassword(req));
     }
 
     @GetMapping("/getInfo")
-    public Result<UserInfoDTO> getInfo(@RequestHeader("token") String token) {
-        Assert.notBlank(token, "token不能为空");
-        return Result.success(userBiz.getInfo(token));
+    public Result<UserInfoDTO> getInfo() {
+        return Result.success(userBiz.getInfo());
     }
 
     @PostMapping("/logout")
-    public Result<Void> logout(@RequestHeader("token") String token) {
-        Assert.notBlank(token, "token不能为空");
-        userBiz.logout(token);
+    public Result<Void> logout() {
+        userBiz.logout();
         return Result.success();
     }
 

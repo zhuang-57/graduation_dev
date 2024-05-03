@@ -124,20 +124,20 @@
         FROM fund
         <where>
             <if test="proId != null">
-                `pro_id` = #{proId}
+                and `pro_id` = #{proId}
             </if>
             <if test="proName != null">
-                `pro_name` like concat('%',#{proName},'%')
+                and `pro_name` like concat('%',#{proName},'%')
             </if>
             <if test="userId != null">
-                `user_id` = #{userId}
+                and `user_id` = #{userId}
             </if>
             <if test="status != null">
-                `status` = #{status}
+                and `status` = #{status}
             </if>
         </where>
 
-        LIMIT #{offset}, #{limit}
+        order by id desc LIMIT #{offset}, #{limit}
     </select>
 
     <select id="pageListCount" resultType="java.lang.Integer">
@@ -145,16 +145,16 @@
         FROM fund
         <where>
             <if test="proId != null">
-                `pro_id` = #{proId}
+                and `pro_id` = #{proId}
             </if>
             <if test="proName != null">
-                `pro_name` like concat('%',#{proName},'%')
+                and `pro_name` like concat('%',#{proName},'%')
             </if>
             <if test="userId != null">
-                `user_id` = #{userId}
+                and `user_id` = #{userId}
             </if>
             <if test="status != null">
-                `status` = #{status}
+                and `status` = #{status}
             </if>
         </where>
     </select>

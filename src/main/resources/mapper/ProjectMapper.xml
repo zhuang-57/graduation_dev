@@ -16,6 +16,8 @@
         <result column="teacher_phone" property="teacherPhone" />
         <result column="member" property="member" />
         <result column="link" property="link" />
+        <result column="middle_check_url" property="middleCheckUrl" />
+        <result column="end_url" property="endUrl" />
         <result column="remark" property="remark" />
         <result column="startime" property="startime" />
         <result column="endtime" property="endtime" />
@@ -36,6 +38,8 @@
         teacher_phone,
         member,
         link,
+        middle_check_url,
+        end_url,
         remark,
         startime,
         endtime,
@@ -167,6 +171,8 @@
             <if test="null != teacherPhone and '' != teacherPhone">teacher_phone = #{teacherPhone},</if>
             <if test="null != member and '' != member">member = #{member},</if>
             <if test="null != link and '' != link">link = #{link},</if>
+            <if test="null != middleCheckUrl and '' != middleCheckUrl">middle_check_url = #{middleCheckUrl},</if>
+            <if test="null != endUrl and '' != endUrl">end_url = #{endUrl},</if>
             <if test="null != remark and '' != remark">remark = #{remark},</if>
             <if test="null != startime ">startime = #{startime},</if>
             <if test="null != endtime ">endtime = #{endtime},</if>
@@ -184,35 +190,34 @@
     </select>
 
 
-
     <select id="pageList" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM project
         <where>
             <if test="likeProjectName != null and likeProjectName != ''">
-                `pro_name` like concat('%',#{likeProjectName},'%')
+                and `pro_name` like concat('%',#{likeProjectName},'%')
             </if>
             <if test="userId != null">
-                `user_id` = #{userId}
+                and `user_id` = #{userId}
             </if>
             <if test="status != null">
-                `status` = #{status}
+                and `status` = #{status}
             </if>
         </where>
-        LIMIT #{offset}, #{limit}
+        order by id desc LIMIT #{offset}, #{limit}
     </select>
 
     <select id="pageListCount" resultType="java.lang.Integer">
         SELECT count(1) FROM project
         <where>
             <if test="likeProjectName != null and likeProjectName != ''">
-                `pro_name` like concat('%',#{likeProjectName},'%')
+                and `pro_name` like concat('%',#{likeProjectName},'%')
             </if>
             <if test="userId != null">
-                `user_id` = #{userId}
+                and `user_id` = #{userId}
             </if>
             <if test="status != null">
-                `status` = #{status}
+                and `status` = #{status}
             </if>
         </where>
     </select>

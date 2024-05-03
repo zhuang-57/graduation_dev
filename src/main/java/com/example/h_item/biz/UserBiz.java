@@ -1,6 +1,7 @@
 package com.example.h_item.biz;
 
 import cn.hutool.core.lang.Assert;
+import com.example.h_item.cache.LoginUtil;
 import com.example.h_item.cache.UserLoginCache;
 import com.example.h_item.common.Pager;
 import com.example.h_item.common.StatusCodeException;
@@ -77,8 +78,8 @@ public class UserBiz {
     /**
      * 修改用户信息
      */
-    public Boolean update(UserUpdateReq req, String token) {
-        Long findUserId = userLoginCache.getUserIdByToken(token);
+    public Boolean update(UserUpdateReq req) {
+        Long findUserId = userLoginCache.getUserIdByToken(LoginUtil.get());
         UserPO findUser = userService.queryById(findUserId);
         // 修改用户名 校验用户名是否存在
         if (!Objects.equals(req.getUsername(), findUser.getUsername())) {
@@ -93,10 +94,23 @@ public class UserBiz {
     }
 
     /**
+     * 删除用户信息
+     */
+    public Boolean delete(IdRequest req) {
+        Long findUserId = userLoginCache.getUserIdByToken(LoginUtil.get());
+        UserPO findUser = userService.queryById(findUserId);
+        if (findUser.getRoleId() != 3) {
+            StatusCodeException.throwException("只有管理员才能删除用户信息");
+        }
+        userService.delete(req.getId());
+        return true;
+    }
+
+    /**
      * 修改密码
      */
-    public Boolean updatePassword(UserUpdatePasswordReq req, String token) {
-        Long findUserId = userLoginCache.getUserIdByToken(token);
+    public Boolean updatePassword(UserUpdatePasswordReq req) {
+        Long findUserId = userLoginCache.getUserIdByToken(LoginUtil.get());
         UserPO findUser = userService.queryById(findUserId);
         if (!Objects.equals(findUser.getPassword(), req.getPassword())) {
             StatusCodeException.throwException("旧密码不正确");
@@ -109,15 +123,15 @@ public class UserBiz {
         updatePO.setPassword(req.getNewPassword());
         userService.updateById(updatePO);
         // 修改密码后登出
-        logout(token);
+        logout();
         return true;
     }
 
     /**
      * 获取用户信息
      */
-    public UserInfoDTO getInfo(String token) {
-        Long userId = userLoginCache.getUserIdByToken(token);
+    public UserInfoDTO getInfo() {
+        Long userId = userLoginCache.getUserIdByToken(LoginUtil.get());
         UserPO userPO = userService.queryById(userId);
         return userConvert.poToDTO(userPO);
     }
@@ -125,8 +139,8 @@ public class UserBiz {
     /**
      * 用户登出
      */
-    public void logout(String token) {
-        userLoginCache.delete(token);
+    public void logout() {
+        userLoginCache.delete(LoginUtil.get());
     }
 
     /**
