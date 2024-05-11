@@ -4,17 +4,14 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * @Date 2024/4/27
- */
 @Data
-public class FundAuditReq {
+public class ResultAuditReq {
 
     /**
-     * 经费id
+     * 成果id
      */
-    @NotNull(message = "经费id不能为空")
-    private Long fundId;
+    @NotNull(message = "成果id不能为空")
+    private Long resultId;
 
     /**
      * 是否通过

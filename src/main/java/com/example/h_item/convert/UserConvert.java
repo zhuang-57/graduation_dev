@@ -11,10 +11,6 @@ import javax.annotation.Resource;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * @Date 2024/4/21
- * @Created by wangshuai
- */
 @Component
 public class UserConvert {
 

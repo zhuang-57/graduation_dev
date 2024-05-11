@@ -9,11 +9,7 @@ import org.springframework.util.Assert;
 import java.io.Serializable;
 import java.util.*;
 
-/**
- * @author fangming.yi
- * @version 1.0
- * @since 2020/10/20 20:43
- */
+
 public class Sort implements Serializable {
 
     public static final Direction DEFAULT_DIRECTION = Direction.ASC;

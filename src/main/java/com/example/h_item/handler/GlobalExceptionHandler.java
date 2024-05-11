@@ -6,10 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * @Date 2023/6/16
- * @Created by wangshuai
- */
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

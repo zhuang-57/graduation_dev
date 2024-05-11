@@ -8,7 +8,6 @@ import java.util.Date;
 
 /**
  * @Date 2024/4/27
- * @Created by wangshuai
  */
 @Data
 public class UserRegisterReq {

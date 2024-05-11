@@ -6,7 +6,6 @@ import java.util.Date;
 
 /**
  * @Date 2024/4/21
- * @Created by wangshuai
  */
 @Data
 public class UserInfoDTO {

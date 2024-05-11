@@ -1,9 +1,6 @@
 package com.example.h_item.common;
 
-/**
- * @Date 2023/11/21
- * @Created by wangshuai
- */
+
 public enum BusinessErrorCodeEnum {
     TOKEN_OVERDUE(1000, "token过期请重新登陆");
     private final Integer code;

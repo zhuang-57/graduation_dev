@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author BEJSON
  * @description 学院表
  * @date 2024-04-27
  */

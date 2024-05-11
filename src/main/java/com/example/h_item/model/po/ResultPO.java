@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author BEJSON
  * @description 成果表
  * @date 2024-04-27
  */
@@ -16,17 +15,17 @@ public class ResultPO {
     /**
      * id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 用户id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 学院id
      */
-    private Integer academyId;
+    private Long academyId;
 
     /**
      * 项目名称
@@ -34,29 +33,29 @@ public class ResultPO {
     private String proName;
 
     /**
-     * 获奖名称
-     */
-    private String rewordName;
-
-    /**
-     * 颁发机构
-     */
-    private String issuingAuth;
-
-    /**
-     * 获奖级别
-     */
-    private String rewardType;
-
-    /**
-     * 获奖时间
-     */
-    private Date rewardTime;
-
-    /**
      * 备注
      */
     private String remark;
+
+    /**
+     * 状态
+     */
+    private String status;
+
+    /**
+     * 获奖类型
+     */
+    private String resultType;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
 
 }

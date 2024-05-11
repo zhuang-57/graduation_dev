@@ -16,7 +16,6 @@ import java.util.Objects;
 /**
  * 登录校验
  *
- * @author fancy
  */
 @Slf4j
 @Component

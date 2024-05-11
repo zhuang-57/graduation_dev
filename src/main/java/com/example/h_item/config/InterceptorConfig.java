@@ -8,10 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
 
-/**
- * @author fancy
- * @date 2022/2/20 20:38
- */
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
     @Resource

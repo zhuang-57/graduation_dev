@@ -5,11 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-/**
- * @author fangming.yi
- * @version 1.0
- * @since 2020/10/20 20:44
- */
+
 public class Limit implements Serializable {
 
     protected int page;

@@ -19,10 +19,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.Objects;
 
-/**
- * @Date 2024/4/21
- * @Created by wangshuai
- */
+
 @Component
 public class UserBiz {
 
@@ -49,7 +46,6 @@ public class UserBiz {
         if (!Objects.equals(userPO.getPassword(), req.getPassword())) {
             StatusCodeException.throwException("密码错误");
         }
-
         // 信息校验成功
         String token = userLoginCache.login(userPO.getId());
         return new UserLoginDTO(token);

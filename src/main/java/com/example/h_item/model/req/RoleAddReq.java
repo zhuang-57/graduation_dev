@@ -6,7 +6,6 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @Date 2024/4/27
- * @Created by wangshuai
  */
 @Data
 public class RoleAddReq {

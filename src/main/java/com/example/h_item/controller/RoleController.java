@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-/**
- * @Date 2024/4/27
- * @Created by wangshuai
- */
 @RestController
 @RequestMapping("/role")
 public class RoleController {

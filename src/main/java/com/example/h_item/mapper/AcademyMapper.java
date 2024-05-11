@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * @description 经费表
- * @author BEJSON
  * @date 2024-04-27
  */
 @Mapper

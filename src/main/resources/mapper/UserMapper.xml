@@ -154,7 +154,7 @@
         FROM user
         <where>
             <if test="likeUsername != null and likeUsername != ''">
-                `username` like concat('%',#{likeUsername},'%')
+                and `username` like concat('%',#{likeUsername},'%')
             </if>
         </where>
         order by id desc  LIMIT #{offset}, #{limit}
@@ -165,7 +165,7 @@
         FROM user
         <where>
             <if test="likeUsername != null and likeUsername != ''">
-                `username` like concat('%',#{likeUsername},'%')
+                and `username` like concat('%',#{likeUsername},'%')
             </if>
         </where>
     </select>

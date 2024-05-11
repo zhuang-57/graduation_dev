@@ -5,7 +5,6 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * @author BEJSON
  * @description 角色表
  * @date 2024-04-27
  */

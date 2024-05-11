@@ -85,7 +85,7 @@
         FROM roles
         <where>
             <if test="likeRoleName != null and likeRoleName != ''">
-                `roles_name` like concat('%',#{likeRoleName},'%')
+                and `roles_name` like concat('%',#{likeRoleName},'%')
             </if>
         </where>
 
@@ -97,7 +97,7 @@
         FROM roles
         <where>
             <if test="likeRoleName != null and likeRoleName != ''">
-                `roles_name` like concat('%',#{likeRoleName},'%')
+                and `roles_name` like concat('%',#{likeRoleName},'%')
             </if>
         </where>
     </select>

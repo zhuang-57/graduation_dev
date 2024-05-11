@@ -8,11 +8,6 @@ import com.google.common.collect.Lists;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author fangming.yi
- * @version 1.0
- * @since 2020/10/20 20:39
- */
 public class Pager<T> implements Serializable {
 
     /** 分页数据 */

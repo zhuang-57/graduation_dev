@@ -9,10 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * @Date 2024/4/21
- * @Created by wangshuai
- */
 @Component
 public class UserLoginCache {
 

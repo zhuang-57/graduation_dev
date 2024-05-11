@@ -3,11 +3,6 @@ package com.example.h_item.common;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.util.Assert;
 
-/**
- * @author fangming.yi
- * @version 1.0
- * @since 2020/10/20 20:06
- */
 public class StatusCodeException extends RuntimeException {
     private final Status statusCode;
 

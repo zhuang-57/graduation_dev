@@ -7,11 +7,6 @@ import org.springframework.util.Assert;
 
 import java.io.Serializable;
 
-/**
- * @author fangming.yi
- * @version 1.0
- * @since 2020/10/20 20:06
- */
 public class Status implements Serializable, Comparable<Status> {
     public static final int ERROR = -1024;
     public static final int WARN = -1001;
